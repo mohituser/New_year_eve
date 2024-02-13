@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Eve</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    body{
+        background-image: url(/frozen-tree-ice-mountain.jpg);
+        background-repeat: no-repeat;
+        /* background-position: center; */
+        background-size: cover;
+
+        }
+        .container{
+            text-align: center;
+            margin-top: 6rem;
+        }
+        h1{
+            font-size: 4rem;
+            color: white;
+            margin: 1rem;
+        }
+        .count{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+        }
+        .time{
+            font-size: 4rem;
+            margin: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+        .time span{
+            font-size: 1.2rem;
+        }
+        @media only screen and (max-width:600px) {
+            .container{
+                margin-top: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>New Year Eve</h1>
+        <div class="count" >
+            <span class="time" >
+                <div id="day">10</div>
+                <span>days</span>
+            </span>
+            <span class="time" >
+                <div id="hour">10</div>
+                <span>hrs</span>
+
+            </span>
+            <span class="time" >
+                <div id="min">10</div>
+                <span>min</span>
+            </span>
+            <span class="time">
+                <div id="sec">10</div>
+                <span>sec</span>
+            </span>
+        </div>
+
+    </div>
+    <script>
+    const day =document.getElementById("day");
+    const hour=document.getElementById("hour");
+    const min =document.getElementById("min");
+    const sec =document.getElementById("sec");
+    function settime(){
+    const newdate=new Date("1 january 2024");
+    const currdate=new Date();
+    let totaltime=newdate.getTime()-currdate.getTime();
+    let newday=(Math.floor(totaltime/(1000* 3600*24)));
+    let newhr=(Math.floor(totaltime/(3600*1000)))%24;
+
+    let newmin=(Math.floor(totaltime/(60*1000)))%60;
+    let newsec=(Math.round(totaltime/(1000)))%60;
+    
+   
+    // if(newhr<10){newhr="0"+newhr;}
+    // if(newmin<10){newmin="0"+newmin;}
+    // if(newsec<10){newsec="0"+newsec;}
+    // if(newday<100){newday="0"+newday;}
+    // if(newday<10){newday="0"+"0"+newday;}
+
+    day.innerHTML=formattime(newday);
+    hour.innerHTML=formattime(newhr);
+    min.innerHTML=formattime(newmin);
+    sec.innerHTML=formattime(newsec);}
+    function formattime(time){
+        return time<10?"0"+time:time;
+    }
+    setInterval(settime, 1000);
+
+    </script>
+    
+</body>
+</html>
